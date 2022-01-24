@@ -8,8 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LivreRepository::class)]
-class Livre
-{
+class Livre {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -27,77 +26,65 @@ class Livre
     #[ORM\Column(type: 'string', length: 255)]
     private $affiche;
 
-    #[ORM\ManyToOne(targetEntity: Bibliotheque::class, inversedBy: 'livres')]
+    #[ORM\ManyToOne(targetEntity: bibliotheque::class, inversedBy: 'livres')]
     private $bibliotheque;
 
     #[ORM\OneToMany(mappedBy: 'livre', targetEntity: avis::class)]
     private $avis;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->avis = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getTitre(): ?string
-    {
+    public function getTitre(): ?string {
         return $this->titre;
     }
 
-    public function setTitre(string $titre): self
-    {
+    public function setTitre(string $titre): self {
         $this->titre = $titre;
 
         return $this;
     }
 
-    public function getGenre(): ?string
-    {
+    public function getGenre(): ?string {
         return $this->genre;
     }
 
-    public function setGenre(string $genre): self
-    {
+    public function setGenre(string $genre): self {
         $this->genre = $genre;
 
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
+    public function getDate(): ?\DateTimeInterface {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
-    {
+    public function setDate(\DateTimeInterface $date): self {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getAffiche(): ?string
-    {
+    public function getAffiche(): ?string {
         return $this->affiche;
     }
 
-    public function setAffiche(string $affiche): self
-    {
+    public function setAffiche(string $affiche): self {
         $this->affiche = $affiche;
 
         return $this;
     }
 
-    public function getBibliotheque(): ?Bibliotheque
-    {
+    public function getBibliotheque(): ?bibliotheque {
         return $this->bibliotheque;
     }
 
-    public function setBibliotheque(?Bibliotheque $bibliotheque): self
-    {
+    public function setBibliotheque(?bibliotheque $bibliotheque): self {
         $this->bibliotheque = $bibliotheque;
 
         return $this;
@@ -106,13 +93,11 @@ class Livre
     /**
      * @return Collection|avis[]
      */
-    public function getAvis(): Collection
-    {
+    public function getAvis(): Collection {
         return $this->avis;
     }
 
-    public function addAvi(avis $avi): self
-    {
+    public function addAvi(avis $avi): self {
         if (!$this->avis->contains($avi)) {
             $this->avis[] = $avi;
             $avi->setLivre($this);
@@ -121,8 +106,7 @@ class Livre
         return $this;
     }
 
-    public function removeAvi(avis $avi): self
-    {
+    public function removeAvi(avis $avi): self {
         if ($this->avis->removeElement($avi)) {
             // set the owning side to null (unless already changed)
             if ($avi->getLivre() === $this) {

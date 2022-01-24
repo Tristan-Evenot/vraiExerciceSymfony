@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Livre;
+use App\Entity\livre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -12,11 +12,9 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Livre[]    findAll()
  * @method Livre[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LivreRepository extends ServiceEntityRepository
-{
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Livre::class);
+class LivreRepository extends ServiceEntityRepository {
+    public function __construct(ManagerRegistry $registry) {
+        parent::__construct($registry, livre::class);
     }
 
     // /**

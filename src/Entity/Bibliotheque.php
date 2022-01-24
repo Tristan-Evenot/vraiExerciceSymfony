@@ -8,8 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BibliothequeRepository::class)]
-class Bibliotheque
-{
+class Bibliotheque {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -21,23 +20,19 @@ class Bibliotheque
     #[ORM\OneToMany(mappedBy: 'bibliotheque', targetEntity: livre::class)]
     private $livres;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->livres = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
+    public function getNom(): ?string {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
-    {
+    public function setNom(string $nom): self {
         $this->nom = $nom;
 
         return $this;
@@ -46,13 +41,11 @@ class Bibliotheque
     /**
      * @return Collection|livre[]
      */
-    public function getLivres(): Collection
-    {
+    public function getLivres(): Collection {
         return $this->livres;
     }
 
-    public function addLivre(livre $livre): self
-    {
+    public function addLivre(livre $livre): self {
         if (!$this->livres->contains($livre)) {
             $this->livres[] = $livre;
             $livre->setBibliotheque($this);
@@ -61,8 +54,7 @@ class Bibliotheque
         return $this;
     }
 
-    public function removeLivre(livre $livre): self
-    {
+    public function removeLivre(livre $livre): self {
         if ($this->livres->removeElement($livre)) {
             // set the owning side to null (unless already changed)
             if ($livre->getBibliotheque() === $this) {

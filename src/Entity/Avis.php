@@ -6,8 +6,7 @@ use App\Repository\AvisRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AvisRepository::class)]
-class Avis
-{
+class Avis {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -19,45 +18,38 @@ class Avis
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $commentaire;
 
-    #[ORM\ManyToOne(targetEntity: Livre::class, inversedBy: 'avis')]
+    #[ORM\ManyToOne(targetEntity: livre::class, inversedBy: 'avis')]
     private $livre;
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getNote(): ?int
-    {
+    public function getNote(): ?int {
         return $this->note;
     }
 
-    public function setNote(int $note): self
-    {
+    public function setNote(int $note): self {
         $this->note = $note;
 
         return $this;
     }
 
-    public function getCommentaire(): ?string
-    {
+    public function getCommentaire(): ?string {
         return $this->commentaire;
     }
 
-    public function setCommentaire(?string $commentaire): self
-    {
+    public function setCommentaire(?string $commentaire): self {
         $this->commentaire = $commentaire;
 
         return $this;
     }
 
-    public function getLivre(): ?Livre
-    {
+    public function getLivre(): ?livre {
         return $this->livre;
     }
 
-    public function setLivre(?Livre $livre): self
-    {
+    public function setLivre(?livre $livre): self {
         $this->livre = $livre;
 
         return $this;

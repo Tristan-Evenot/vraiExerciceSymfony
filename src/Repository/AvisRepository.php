@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Avis;
+use App\Entity\avis;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -12,11 +12,9 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Avis[]    findAll()
  * @method Avis[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AvisRepository extends ServiceEntityRepository
-{
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Avis::class);
+class AvisRepository extends ServiceEntityRepository {
+    public function __construct(ManagerRegistry $registry) {
+        parent::__construct($registry, avis::class);
     }
 
     // /**
